@@ -5,7 +5,7 @@ const CardFilm = props => {
   const { title, director, producer, relaseDate } = props;
   return (
     <div className="containerCard">
-      <div class="box">
+      <div className="box">
         <div className="box__header">
           <h3>Titulo</h3>
           <h1> {title}</h1>

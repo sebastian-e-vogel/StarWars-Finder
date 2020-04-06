@@ -11,7 +11,7 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <header className="header">
-          <img src="https://fontmeme.com/permalink/200318/f4f50330219c1081a6e401bcb6912a2c.png" />
+          <img alt='title' src="https://fontmeme.com/permalink/200318/f4f50330219c1081a6e401bcb6912a2c.png" />
         </header>
         <div className="container-components">
           <Menu />

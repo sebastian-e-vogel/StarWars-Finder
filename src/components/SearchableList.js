@@ -57,8 +57,8 @@ function SearchableList(props) {
             />
           </div>
         </div>
-        <div className="ListItem">
-          <ReactLoading type="spin" color="#A9A9A9" height={25} width={25} />
+        <div className="Loader">
+          <ReactLoading type="spin" color="black" height={25} width={25} />
         </div>
       </div>
     );
@@ -81,14 +81,11 @@ function SearchableList(props) {
     const onScroll = () => {
       const scrollList = infiniteScroll.current.scrollTop;
       setScrollTop(scrollList);
-
+     let childtHight = infiniteScroll.current.firstElementChild.offsetHeight * charactersResults.length
+     let parentHight = infiniteScroll.current.offsetHeight
       if (
-        scrollTop >
-          infiniteScroll.current.firstElementChild.offsetHeight *
-            charactersResults.length -
-            410 &&
-        next &&
-        !loading
+        scrollTop + parentHight > childtHight - 60
+           && next && !loading
       ) {
         loadMoreCharacters();
       }
@@ -115,12 +112,14 @@ function SearchableList(props) {
           onScroll={onScroll}
         >
           {filteredCharacters.map(character => (
-            <ListItem button onClick={() => handleSelectCharacter(character.url)}>
+            <ListItem key={character.url} button onClick={() => handleSelectCharacter(character.url)}>
               <ListItemText inset primary={character.name} />
             </ListItem>
           ))}
-          {loading && (
+          {loading && ( 
+            <div className="Loader">
             <ReactLoading type="spin" color="#A9A9A9" height={30} width={30} />
+            </div>
           )}
         </List>
       </div>
@@ -149,7 +148,7 @@ function SearchableList(props) {
       </div>
       <List component="nav" className={classes.root}>
         {filteredFilms.map(film => (
-          <ListItem button onClick={() => handleSelectFilm(film.url)}>
+          <ListItem key={film.url} button onClick={() => handleSelectFilm(film.url)}>
             <ListItemText inset primary={film.title} />
           </ListItem>
         ))}

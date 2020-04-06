@@ -60,9 +60,10 @@
 }
 
 /*--- LIST ITEM SECTION ---*/
-.ListItem {
+.Loader {
   display: flex;
   flex-direction: column;
+  align-items: center
 }
 
 @import url("https://fonts.googleapis.com/css?family=Muli:400,700&display=swap");

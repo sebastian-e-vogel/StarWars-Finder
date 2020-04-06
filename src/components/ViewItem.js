@@ -3,9 +3,8 @@ import "./styles.css";
 import { connect } from "react-redux";
 import CardFilm from "./CardFilm";
 import CardCharacter from "./CardCharacter";
-import { selectFilm } from "../redux/actions/PeliculasActions";
-import { selectSection } from "../redux/actions/SelectSectionActions";
 import languajeMap from "./LanguajeMap";
+
 
 function ViewItem(props) {
   const charactersResults = props.state.personajes.listPersonajes.results;
@@ -14,13 +13,7 @@ function ViewItem(props) {
   const { selectedFilm } = props.state.peliculas;
   const { selectedSection } = props.state.sections;
 
-  const getFilmId = filmUrl =>
-    filmsResults.findIndex(film => film.url === filmUrl);
 
-  const showFilm = filmUrl => {
-    props.selectSection("peliculas");
-    props.selectFilm(getFilmId(filmUrl));
-  };
 
   const translate = wordToTranslate => languajeMap[wordToTranslate];
 
@@ -34,6 +27,7 @@ function ViewItem(props) {
     return (
       <div className="listCardItem">
         <CardCharacter
+          url={charactersResults[selectedCharacter].url}
           name={charactersResults[selectedCharacter].name}
           eyeColor={translate(charactersResults[selectedCharacter].eye_color)}
           height={
@@ -46,13 +40,7 @@ function ViewItem(props) {
               ? "Desconocido"
               : `${charactersResults[selectedCharacter].mass} kg`
           } 
-          films={charactersResults[selectedCharacter].films.map(filmUrl => {
-            return (
-              <p className="card-film" onClick={() => showFilm(filmUrl)}>
-                {filmsResults[getFilmId(filmUrl)].title}
-              </p>
-            );
-          })}
+          films={charactersResults[selectedCharacter].films}
         />
       </div>
     );
@@ -78,11 +66,4 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    selectSection: section => dispatch(selectSection(section)),
-    selectFilm: id => dispatch(selectFilm(id))
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ViewItem);
+export default connect(mapStateToProps)(ViewItem);
