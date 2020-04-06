@@ -1,0 +1,31 @@
+.App {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 15px;
+}
+
+.container-components {
+  display: flex;
+  margin-top: 30px;
+  height: 100%;
+}
+
+.header img {
+  width: 100%;
+}
+
+@media (max-width: 1150px) {
+  .container-components {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 470px) {
+  .header img {
+    width: 70%;
+  }
+}
