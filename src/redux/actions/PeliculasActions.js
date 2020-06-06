@@ -6,7 +6,7 @@ export const SELECT_FILM = "SELECT_FILM";
 export const getFilms = dispatch => {
   dispatch({ type: FETCH_PELICULAS_REQ });
 
-  fetch("https://swapi.co/api/films/")
+  fetch("https://swapi.dev/api/films/")
     .then(res => res.json())
     .then(peliculas => {
       dispatch({

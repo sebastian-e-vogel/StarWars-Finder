@@ -7,7 +7,7 @@ export const FETCH_MORE_CHARACTERS = "FETCH_MORE_CHARACTERS";
 export const getCharacters = dispatch => {
   dispatch({ type: FETCH_ITEM_REQ });
 
-  fetch("https://swapi.co/api/people/")
+  fetch("https://swapi.dev/api/people/")
     .then(res => res.json())
     .then(personajes => {
       dispatch({
